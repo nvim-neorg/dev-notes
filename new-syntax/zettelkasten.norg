@@ -1,0 +1,86 @@
+@document.meta
+        title: zettelkasten
+        description: ideas for zettelkasten in neorg
+        authors: neorg-dev
+        categories: 
+        created: 2021-11-28
+        version: 0.0.8
+@end
+
+* Goals
+ ** Templates
+ ** Links
+    Links should use topic (first heading1?) as link text
+  *** Follow
+      - follow links (already implemented in neorg)
+      -- splits
+      -- directly
+  *** Completion
+      - get completion for links to other zettels
+      -- by name (topic?)
+      -- zettel number
+  *** Preview
+      - allow to preview other zettels
+      -- just preview document.meta `description|
+      -- split
+      -- float
+      -- virtual text?
+  *** Backlinks
+   **** Functionality
+      There must a way of *automatic| backlinking:
+     - In zettel $a| you create a link to zettel $b| > in zettel $b| there will be a `@backlinks| on which you can press to {**** Displaying}[display]
+     This should get automatically inserted
+   **** Displaying
+        - can be displayed as virtual lines
+        - opened in loclist or quickfixlist
+        - opened in split neorg buffer (to follow them)
+        - open in telescope
+ ** Tags
+   /I don't know if this is a thing in ZK but I think it would be great|
+   use sth like `#tags neorg zettelkasten|
+  *** Searching
+      allow searching by tags
+  *** Quick adding
+      provide a quick way to add existing tags to a Zettel
+      - search through existing tags with telescope
+ ** Telescope
+    Use telescope for searching Stuff
+    - tags
+    - note names
+
+ ** Zettel
+    - Document meta
+    -- Categories: used to search
+    -- unique id
+    - Heading 1: is used as title for zettel (link text)
+    - tags
+    - Actual text
+    - Backlinks `= backlinks| press keys to {**** Displaying}[display]
+  *** Example
+      @code norg
+        @document.meta
+          title: zettelkasten
+          description: ideas for zettelkasten in neorg
+          authors: max
+          categories: 
+          created: 2021-11-28
+          version: 0.0.8
+          id: 202111281750
+        @end
+        #tags neorg zettelkasten
+        * My Topic
+        My nice content to the topic
+      
+        = backlinks
+        @end
+ ** Zettelkasten
+    - all the zettels, can be in folders
+    - and index file with all zettels listed
+    - file where zettels are sorted with categories
+    -- what do we do with zettels with multiple categories?
+      
+* Implementation Ideas
+ ** Linking
+    - Database
+    -- sqlite.nvim
+    -- real database like org-roam v2
