@@ -7,3 +7,45 @@
     version: 0.0.9
 @end
 
+Just pasting some copy-pasta from discord with no real structure yet.
+
+@code norg
+? Select the coolest thing there is.
+- [ ] Markdown
+- [x] Neorg
+- [x] org-mode
+@end
+
+@code norg
+#choice single | Make a choice now:
+- [ ] Invalid Choice
+- [x] Valid choice
+- [ ] Invalid choice
+@end
+
+@code norg
+#choice multiple | Make any amount of choices:
+- [ ] Invalid choice
+- [x] Valid choice
+- [x] Another valid choice
+@end
+
+@code norg
+#choice limit 2 | Make up to 2 choices:
+- [x] Valid
+- [x] Also valid
+- [ ] Invalid
+- [ ] Also invalid
+@end
+
+- A pipe | would essentially be a way to define parameters that have multiple words in them.
+
+
+Alternative:
+
+@code norg
+$ What OS should everyone be using?
+- ( ) Windows
+- (x) Linux
+- ( ) Mac OS
+@end
