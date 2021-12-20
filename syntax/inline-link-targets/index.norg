@@ -1,0 +1,25 @@
+@document.meta
+        title: Inline Link Targets
+        description: Syntax proposal for in-line link targets.
+        authors: mrossinek
+        categories: syntax proposal
+        created: 2021-12-20
+        version: 0.0.9
+@end
+
+* Basic Idea
+  Provide some syntax to specify targets which links can point to with some in-line markup,
+  effectively allowing arbitrary (not entirely but for all practical purposes )placement within a file.
+
+ ** Why?
+    Allows linking to locations which may be difficult to get to:
+
+    - some list item
+    - [ ] some task
+
+    This important paragraph, but I do not want to split my entire document, so I cannot use a `| marker`.
+
+ ** How?
+    Place an <inline tag>.
+
+    And link to it: {> inline tag}.
