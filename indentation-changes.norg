@@ -1,0 +1,64 @@
+@document.meta
+    title: Indentation Ideas
+    description: Concepts for a proper query syntax to~
+    make indentation using Treesitter less awful.
+    authors: vhyrro
+    categories: [
+        improvements
+        treesitter
+    ]
+    created: 2022-01-01
+    version: 0.0.9
+@end
+
+* Why the rewrite?
+  Indentation is... hard, to say the least.
+  There are several moving parts, and making everything work as
+  intended can be really annoying.
+
+  We don't want to simply just make a good solution for Neorg, ideally
+  we'd like to make an implementation that will be easily translatable to
+  `nvim-treesitter` itself - no more annoying indents 🤞.
+
+* Bugginess
+  As a lot of people probably know treesitter indentation is really annoying
+  at times. Because of the way TS works if you're editing at the beginning
+  or end of a file you may find that `get_node_at_cursor` straight up returns
+  `nil` and you're pretty much screwed.
+  There are ways to mitigate this, and we will definitely try to create workarounds
+  to alleviate bugs like this.
+
+* What's the plan?
+ ** Plan A
+    - Fix the `get_node_at_cursor`-at-end-of-file bug.
+
+ ** Plan B
+    To make indentation properly function we need a good way to define complex
+    indents through treesitter queries. As of right now we are provided only
+    4 different captures: `@indent`, `@branch`, `@return` and `@ignore`.
+    Let's just say... these aren't the best to work with lol.
+
+    We can still keep those captures, that's fine by me, but we need more control.
+    For example:
+
+    @code query
+    (
+          (my_node 
+            (nested_node) @nested-node
+          ) @indent
+        
+          (#align-indent? @nested-node)
+    )
+    @end
+
+    I'd like to be able to align my indent to a certain node, that'd be great, wouldn't it?
+
+    `#align-indent?` would also allow for static values like `0` or `10` instead of captures like `@nested-node`.
+    Perhaps we could also create an `#align-indent-end?` attrib to start the indent from the end of the node?
+
+ ** How Neorg and `nvim-treesitter` will tie together
+    Ideally I'd love for us to implement our feature set in such a way that it'll easily be translatable to nvim-treesitter's repository.
+    For this we need to make sure we're using `indents.scm` in our Neorg code and are using the inbuilt captures like `@indent` etc.
+
+    When it comes to customizability nothing's stopping us from parsing a `config` table and building out a TS query file on the fly, then simply
+    inputting it into `vim.treesitter`. How does that sound?
