@@ -62,3 +62,26 @@
 
     When it comes to customizability nothing's stopping us from parsing a `config` table and building out a TS query file on the fly, then simply
     inputting it into `vim.treesitter`. How does that sound?
+
+* More advanced stuff for the future
+  This isn't exactly related to Neorg (since Neorg doesn't have very complex syntax elements), but we definitely need to figure out a way to do relative indentation for
+  programming languages for example.
+  Take a look at this:
+
+  @code lua
+  if something then
+    -- code should be indented here
+  end
+  @end
+
+  That's perfectly fine, but then we have this:
+  @code lua
+  if
+      something -- should be indented
+  then
+      -- code should be indented here
+  end -- should be auto dedented
+  @end
+
+  I don't have exact ideas on how to tackle this yet but I believe just having more queries to account for more edge cases will work fine?
+  If that's the case we'll need to have a system that'll detect which TS query to use (or we'll have to make our queries very strict).
