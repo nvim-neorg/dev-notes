@@ -19,30 +19,29 @@
       - get completion for links to other zettels
       -- by name (topic?)
       -- zettel number
-  *** Preview
-      - allow to preview other zettels
-      -- just preview document.meta `description|
-      -- split
-      -- float
-      -- virtual text?
   *** Backlinks
    **** Functionality
-      There must a way of *automatic| backlinking:
-     - In zettel $a| you create a link to zettel $b| > in zettel $b| there will be a `@backlinks| on which you can press to {**** Displaying}[display]
-     This should get automatically inserted
+      There must a way of *automatic* backlinking:
+     - In zettel $a$ you create a link to zettel $b$ > in zettel $b$ you can {**** Displaying}[display] the backlinks with commands or keybindings.
+     - This should be automatically updated
    **** Displaying
-        - can be displayed as virtual lines
         - opened in loclist or quickfixlist
         - opened in split neorg buffer (to follow them)
-        - open in telescope
+        -- preview
+        --- open in float
+        --- virtual text in split
+        -- follow with <cr> (similar to toc)
+        - open in telescope (follow on <CR> and preview)
  ** Tags
-   /I don't know if this is a thing in ZK but I think it would be great|
-   use sth like `#tags neorg zettelkasten|
+   use a syntax like `#tags neorg zettelkasten`
   *** Searching
-      allow searching by tags
+      - allow searching by tags
+      -- press a key on a tag or use command to {**** displaying}[display] other zettels with the same
+      -- {# Telescope}
   *** Quick adding
-      provide a quick way to add existing tags to a Zettel
-      - search through existing tags with telescope
+      - provide a quick way to add existing tags to a Zettel
+      -- search through existing tags with telescope
+      -- completion
  ** Telescope
     Use telescope for searching Stuff
     - tags
@@ -50,34 +49,29 @@
 
  ** Zettel
     - Document meta
-    -- Categories: used to search
     -- unique id
     - Heading 1: is used as title for zettel (link text)
-    - tags
+    - tags (anywhere in the zettel?)
     - Actual text
-    - Backlinks `= backlinks| press keys to {**** Displaying}[display]
   *** Example
       @code norg
-        @document.meta
+        \@document.meta
           title: zettelkasten
           description: ideas for zettelkasten in neorg
           authors: max
-          categories: 
           created: 2021-11-28
           version: 0.0.8
           id: 202111281750
-        @end
+        \@end
         #tags neorg zettelkasten
         * My Topic
         My nice content to the topic
       
-        = backlinks
-        @end
+      @end
+
  ** Zettelkasten
-    - all the zettels, can be in folders
-    - and index file with all zettels listed
-    - file where zettels are sorted with categories
-    -- what do we do with zettels with multiple categories?
+    - all the zettels, can be in folders -> doesn't matter how many subfolders
+    - and index file with all zettels listed -> is this necessary? or do we want this anyway?
       
 * Implementation Ideas
  ** Linking
