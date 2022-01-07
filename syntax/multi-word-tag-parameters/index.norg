@@ -1,0 +1,33 @@
+@document.meta
+        title: Multi-Word Tag Parameters
+        description: 
+        authors: max
+        categories: 
+        created: 2022-01-07
+        version: 0.0.9
+@end
+
+* Basic Idea
+  Enable the possibility of specifying tag parameters which consist of multiple words.
+
+** Why?
+   Currently, parameters are specified for example like so:
+
+   = ToC Table of Contents
+
+   While in this example, it makes sense that all three words are considered to be part of a single parameter (the /title/), this is not evident.
+   Furthermore, other scenarios can be envisioned where more than one parameter are required and ambiguity will arise which words belong to which parameter.
+
+   To alleviate that, we can introduce a _separator_ which can be manually inserted in order to disambiguate the parameter distinction.
+
+** How?
+   Looking at tables, the pipe character, `|`, seems like a good fit here, too:
+   #choice multiple | Make any number of choices:
+   (Example taken from {:../multiple-choice-questions/initial-ideas:})
+
+** Requirements
+   - Treesiter
+   -- special handling of `|` in tag/insertion parameters
+
+   - Neorg
+   -- nothing? 🤔
