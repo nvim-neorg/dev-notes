@@ -1,51 +1,90 @@
 @document.meta
-    title: initial-ideas
-    description: 
-    authors: vhyrro
-    categories: 
+    title: Multiple Choice Questions Syntax
+    description:
+    authors: vhyrro, max
+    categories:
     created: 2021-12-20
     version: 0.0.9
 @end
 
-Just pasting some copy-pasta from discord with no real structure yet.
+* Basic Idea
+  A [proposal] was put forward to introduce a syntax for /questions and answers/.
 
-@code norg
-? Select the coolest thing there is.
-- [ ] Markdown
-- [x] Neorg
-- [x] org-mode
-@end
+  There are multiple aspects to this so I will try to separate them by logical use case.
 
-@code norg
-#choice single | Make a choice now:
-- [ ] Invalid Choice
-- [x] Valid choice
-- [ ] Invalid choice
-@end
+  [proposal]{https://github.com/nvim-neorg/neorg/issues/232}
 
-@code norg
-#choice multiple | Make any amount of choices:
-- [ ] Invalid choice
-- [x] Valid choice
-- [x] Another valid choice
-@end
+** Q & A
+   A /Q & A/ or FAQ is generally a free-form, text-based collection of questions and answers.
+   Also in a scenario of an interview (where questions and answers are gathered), this essentially does not change the syntax which could be used for an FAQ.
 
-@code norg
-#choice limit 2 | Make up to 2 choices:
-- [x] Valid
-- [x] Also valid
-- [ ] Invalid
-- [ ] Also invalid
-@end
+   For this free-form style, I believe the _definiton_ syntax can be leveraged nicely.
+   For example:
 
-- A pipe | would essentially be a way to define parameters that have multiple words in them.
+   $ What is Neorg?
+   It is a tool designed to reimagine organization as you know it.
+
+   of for more elaborate answers:
+
+   $$ How do I get started with Neorg?
+   You can install it with your favorite plugin manager and call the `setup()` function:
+
+   @code lua
+   require('neorg').setup {
+       load = {
+           ["core.defaults"] = {}
+       }
+   }
+   @end
+   $$
+
+   You can now easily link to these objects via {$ What is Neorg?} and {$ How do I get started with Neorg?}
 
 
-Alternative:
+** Muliple Choice Questions (MCQs)
 
-@code norg
-$ What OS should everyone be using?
-- ( ) Windows
-- (x) Linux
-- ( ) Mac OS
-@end
+   TODO(mrossinek)
+
+* Original Discord Discussions
+  Just pasting some copy-pasta from discord with no real structure yet.
+
+  @code norg
+  ? Select the coolest thing there is.
+  - [ ] Markdown
+  - [x] Neorg
+  - [x] org-mode
+  @end
+
+  @code norg
+  #choice single | Make a choice now:
+  - [ ] Invalid Choice
+  - [x] Valid choice
+  - [ ] Invalid choice
+  @end
+
+  @code norg
+  #choice multiple | Make any amount of choices:
+  - [ ] Invalid choice
+  - [x] Valid choice
+  - [x] Another valid choice
+  @end
+
+  @code norg
+  #choice limit 2 | Make up to 2 choices:
+  - [x] Valid
+  - [x] Also valid
+  - [ ] Invalid
+  - [ ] Also invalid
+  @end
+
+  - A pipe | would essentially be a way to define parameters that have multiple words in them.
+  -- See the separate proposal in {:../multi-word-tag-parameters/index:}
+
+  Alternative:
+
+  @code norg
+  $ What OS should everyone be using?
+  - ( ) Windows
+  - (x) Linux
+  - ( ) Mac OS
+  @end
