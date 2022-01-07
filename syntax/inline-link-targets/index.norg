@@ -9,17 +9,39 @@
 
 * Basic Idea
   Provide some syntax to specify targets which links can point to with some in-line markup,
-  effectively allowing arbitrary (not entirely but for all practical purposes )placement within a file.
+  effectively allowing arbitrary (not entirely but for all practical purposes) placement within a file.
 
- ** Why?
-    Allows linking to locations which may be difficult to get to:
+** Why?
+   Allows linking to locations which may be difficult to get to if you do not want/cannot use a `| marker`.
 
-    - some list item
-    - [ ] some task
+** How?
+   Place an `<inline tag>`.
 
-    This important paragraph, but I do not want to split my entire document, so I cannot use a `| marker`.
+   And link to it: `{> inline tag}`.
 
- ** How?
-    Place an <inline tag>.
+   $ Can we really use `>` as the link prefix?
+   Yes, but this will prevent us from ever introducing links to quotes.
+   I think this is fine though, since quotes don't have a title associated with them, via which one could link to them.
+   Instead, one would probably use an in-line link target close to a certain quote.
 
-    And link to it: {> inline tag}.
+** Example
+   I am writing some prose.
+   > This is a quote.
+   This quote just now was very important. <important-quote>
+
+   I can now continue writing.
+
+   And later on link back to that really {> important quote}.
+
+** Requirements
+   - Treesitter
+   -- another grammar group similar to anchor declarations
+   -- another link location target
+
+   - Neorg
+   -- NFF spec update
+   -- additions to the `hop` module
+
+   - Other:
+   -- neorg-telescope integration
+   -- etc.
