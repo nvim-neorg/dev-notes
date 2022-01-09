@@ -145,8 +145,22 @@
     I am open to suggestions whether or not such a syntax element is necessary.
 
 ** Forms
+   We have now discussed the major aspects of this proposal.
+   However, we now also have most things in place which would allow us to write proper *forms* in Neorg.
+   We have syntax for questions (single or multiple choice), we can set up plain text fields (`@code` although `code` at this point would be mistitled), etc.
 
-   TODO(mrossinek)
+   Some aspects may still need some ironing out but overall I think most pieces are there... except one aspect: *analysis*.
+   Analyzing forms means extracting the information that was filled in by the /user/.
+   Since we have a TS parser for norg, this should be fairly easy!
+   I think, we could add some tools built into Neorg to help with such a use case.
+   For example, extract all user-supplied data and export it as structured data (`json` comes to mind).
+   This would need some more aspects like names for all data fields but in general this should be fairly easy to do.
+
+   In a similar fashion, quizzes (i.e. forms where a certain answer is correct/expected) could benefit from certain functionalities.
+   For example, a teacher may choose to write a quiz in Neorg with pre-answered questions (i.e. writing a master solution) and would then wish to export the quiz norg file with all answers removed.
+   This should also be fairly simple to do using our TS parser.
+
+   This is more advanced stuff which will need to be built on top of the first aspects of this proposal but I wanted to have this written down somewhere.
 
 * Original Discord Discussions
   Just pasting some copy-pasta from discord with no real structure yet.
