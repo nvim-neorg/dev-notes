@@ -42,6 +42,109 @@
 
 
 ** Muliple Choice Questions (MCQs)
+   I would like to discuss MCQs in a more general manner.
+   I.e. I would like to discuss them as /a construct to choose one or more options from a given selection/.
+
+   In HTML, single-choice questions are usually rendered with so called /radio buttons/.
+   Multiple radio button inputs can be tied into a mutually-exclusive group via their `name` attribute.
+   When one such button gets selected, all other buttons within the same group will automatically get de-selected (/mutual exclusivity/).
+
+   For multiple-choice scenarios, simple check-boxes are usually sufficient.
+   I would like to pick up on one of our early ideas from the {* Original Discord Discussions} section,
+   and suggest that we do _not_ differentiate these cases on the syntax of the elements to pick from,
+   but instead modify their behavior via a _carryover tag_.
+
+   There are various advantages to this:
+   - changing from single- to multiple-choice is easy
+   -- only requires changing tag parameters and not the syntax of all elements to choose from
+   - we can choose a syntax _different_ from our TODO syntax
+   -- in this way we do not need a special context in order to differentiate a TODO list from a multiple-choice question
+   -- For example: is the following a TODO list or a multiple choice question?
+      @code norg
+      What am I?
+      - [ ] a TODO list
+      - [ ] a multiple-choice question
+      @end
+      To the TS parser this is ambiguous, which we generally try to avoid.
+   -- One could argue that we may not have to care, but we should definitely not allow our more advanced TODO item states like `[?]`, etc.
+
+*** Syntax Proposal
+    With all that said, I propose the following syntax:
+    @code norg
+    - ( ) Un-selected choice
+    - (x) Selected choice
+    @end
+    The reasoning is very simple:
+    - `- [ ]` is already taken by TODO items
+    - `- { }` is ambiguous with links
+    - `- ( )` feels natural and somewhat resembles a round radio button
+
+    Since this is an entirely new syntax element, we can even embed this directly into a document:
+    @code norg
+    * I am a heading
+      I am a paragraph.
+      How do you like Neorg?
+      - ( ) I am loving it!
+      - ( ) I am still learning
+      - ( ) Gotcha! Surely noone can answer negatively here...
+    @end
+    The TS parser can directly detect that this is an MCQ.
+
+*** Behavior Modification
+    The behavior (or /kind/) of MCQ should be configurable via a _carryover tag_.
+    Imo an MCQ should default to a single-choice question (since we are mimicing radio buttons here).
+    For other cases, the `#choice` carryover tag can be used as suggested early on in {* Original Discord Discussions}.
+    @code norg
+    #choice 2
+    - ( ) A
+    - ( ) B
+    - ( ) C
+    @end
+    Thus, the default would be `#choice 1`.
+    Rather than introducing `single`, `multiple` and `limit`, we could go for a single argument style: `<2`, `2+`, `_` (for /any/), etc.
+    But especially here I am open to better suggestions.
+
+    The boundaries of the mutual exclusivity (configurable via the `#choice` tag) can be naturally set via the TS parser detecting the limits of the list of choices.
+    For example, the following norg code:
+    @code norg
+    Question 1:
+    - ( ) Option a
+    - ( ) Option b
+
+    Question 2:
+    - ( ) Option a
+    - ( ) Option b
+    @end
+    would be parsed similar to this:
+    @code query
+    (paragraph)
+    (generic_list
+        (choice)
+        (choice)
+    )
+    (paragraph)
+    (generic_list
+        (choice)
+        (choice)
+    )
+    @end
+    Each `generic_list` poses natural bounds for the exclusivity between multiple choices.
+
+*** More Syntax (?)
+    Given all of the above, I do not necessarily see the need for an additional syntax element, to frame MCQs with.
+    Our original ideas contained an example similar to this:
+    @code norg
+    ? Select the coolest thing there is.
+    # choice _
+    - ( ) Markdown
+    - (x) Neorg
+    - (x) org-mode
+    @end
+    I am not certain whether the `?`-detached modifier is really needed.
+    Depending on the scenario this may just be a bold sentence, maybe a heading, or it could be integrated into the `#choice` tag (although this would give it somewhat dual purpose).
+    I am open to suggestions whether or not such a syntax element is necessary.
+
+** Forms
 
    TODO(mrossinek)
 
