@@ -18,7 +18,7 @@
    A /Q & A/ or FAQ is generally a free-form, text-based collection of questions and answers.
    Also in a scenario of an interview (where questions and answers are gathered), this essentially does not change the syntax which could be used for an FAQ.
 
-   For this free-form style, I believe the _definiton_ syntax can be leveraged nicely.
+   For this free-form style, I believe the _definition_ syntax can be leveraged nicely.
    For example:
 
    $ What is Neorg?
