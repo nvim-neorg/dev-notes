@@ -1,0 +1,41 @@
+@document.meta
+    title: final-ideas
+    description: 
+    authors: vhyrro
+    categories: 
+    created: 2022-02-04
+    version: 0.0.11
+@end
+
+* (somewhat) Final syntax proposal for MCQs
+ ** Sometimes a carryover tag is all you need
+    For our syntax we've decided that using Neorg itself is the perfect solution.
+    Here's an example snippet:
+
+    @code
+    What is the best flavour of ice cream?
+    |choice
+    - |x| Chocolate
+    - | | Mint
+    - | | Vanilla
+    @end
+
+    The `choice` carryover tag by default specifies that only one choice may be made by the user.
+    During render the user doesn't see `Chocolate` as "checked". That is simply an indicator of the correct
+    choice.
+    The `choice` tag takes in a single argument, and that argument can be an integer (`2`, `3`) or an expression
+    (`<2`, `>4`).
+
+    For more pleasant documents use whitespace:
+    @code
+    What is the best flavour of ice cream?
+
+    |choice
+    - |x| Chocolate
+    - | | Mint
+    - | | Vanilla
+    @end
+    ---
+
+  An important thing to note is that `|choice` does *not* change how the text above the tag is rendered.
+  Neorg strictly goes top to bottom.
