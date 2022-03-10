@@ -1,0 +1,16 @@
+@document.meta
+        title: gtd_ideas
+        description: 
+        authors: max
+        categories: 
+        created: 2022-03-10
+        version: 0.0.11
+@end
+
+- semantic highlighting (ig)
+  e.g. highlight overdue tasks
+
+- being able to look at next weeks in `views`->`weekly summary`
+
+- Toggle details of tasks with <tab> (like tasks in projects)
+  Time due/start, contexts, waiting fors etc
