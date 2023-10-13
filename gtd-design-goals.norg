@@ -80,7 +80,8 @@
 * Ontologies
 
   Before any further explanations are made it's important to understand
-  /ontologies/ as a concept. Think of an ontology as a container with some
+  /ontologies/ as a concept. This concept is general and exists in the whole of Neorg, but is extensively used
+  within the GTD implementation. Think of an ontology as a container with some
   distinct properties. For starters, a single ontology contains any number of
   elements of the same type. The type consists of the following:
   - A text field (required)
@@ -105,8 +106,9 @@
     list (e.g. the calendar) can be duplicated or its output modified (you can have several different calendars which are just
     different ontologies with their `display`:s set to `calendar`).
 
-    The GTD implementation in Neorg works because Neorg provides a *default set of ontologies* (with appropriate names like `&inbox`, `&calendar` etc.)
-    crafted to mimic the GTD workflow in the most efficient way possible.
+    The GTD implementation in Neorg works because Neorg's GTD provides a *default set of ontologies*
+    (with appropriate names like `&inbox`, `&calendar` etc.) crafted to mimic the GTD workflow in the most efficient way possible.
+    These ontologies are simply registered within the Neorg environment and are used appropriately.
 
 * Processing
 
