@@ -324,7 +324,101 @@
 
 * Review Process
 
-  TODO.
+  The review process happens usually at the end of every week. It involves taking a look at your projects, next actions and
+  the amount of things you completed during the past week, and establishing a basic plan for next week.
+
+*** Automating the Review Process
+
+    The user should be able to configure a static day of the week and time for a weekly review. Neorg will then
+    automatically fill the calendar entry at that point every week with the appropriate due date. Neorg will also be able
+    to calculate an estimated time (`~time`) of the whole review by doing some automatic, behind-the-scenes calculcations for
+    each sector of the review process. This includes:
+    - Counting the amount of projects that do not have a Next Action
+    - Checking if the Next Actions ontology is empty, but the inbox is not (there are tasks left to process)
+    - Counting the amount of overdue tasks
+    - Counting the amount of someday/maybe tasks (which should also be reviewed)
+
+    Based on usage data of the user (stored locally, of course) the average amount of time it takes to review a single task per sector
+    can be adjusted to more closely match the actual speed of the user.
+
+    The user may also opt not to set a static day for their review. If this is the case, Neorg may provide a yellow warning icon in the calendar
+    view which, when clicked or opened with the appropriate keybind, would notify the user that they have not set a review date.
+    This review date warning should also be configurable.
+
+*** The Review Date UI/UX
+
+    It is important to operate within the limits of the TUI. The review process should be opened in a completely new tab, occupying the entire space
+    and allowing the user to fully immerse themselves in the review process.
+
+    Below is a prototype example of the UI.
+
+    @code
+
+                               STEP 1/2
+
+
+         PAST                  PRESENT                 FUTURE
+
+    ┌─────────────┐        ┌─────────────┐        ┌─────────────┐
+    │    Tasks    │        │             │        │     Next    │
+    │  Completed  │        │   OVERDUE   │        │   Actions   │
+    │             │        │             │        │             │
+    │             │ -----> └─────────────┘ -----> │             │
+    │             │        ┌─────────────┐        │             │
+    │             │        │   NO NEXT   │        │             │
+    │             │        │             │        │             │
+    │             │        │   ACTIONS   │        │             │
+    └─────────────┘        └─────────────┘        └─────────────┘
+    @end
+
+    The review involves all things you have done, the things you need to do, and the actions you should take to make your future self
+    more organized.
+
+**** Tasks Completed
+
+     This display should show an overall percentage of what helped you achieve your goals.
+
+     It should show all projects that were fully completed and what projects you made progress in the most.
+     The last few lines should show the projects that haven't moved much.
+
+**** Overdue
+
+     The overdue display should show all tasks that are currently overdue and must be handled in some way.
+     It should be possible to interact with the tasks directly from the UI with a similar set of keybinds
+     as the inbox processing phase (moving to archive, postponing etc.).
+
+     Tasks with the highest urgency should be displayed first.
+
+**** NO NEXT ACTIONS
+
+     This display should show all projects that do not have another Next Action defined for them, with
+     the quick ability of adding a Next Action by showing the inbox in a popup.
+
+     If there are no next actions but there are items in the inbox then there should also be a message
+     telling the user they have no Next Actions defined.
+
+**** Next Actions
+
+     The Next Actions display should show all of the next actions and allow you to verify if everything
+     is still the way you wanted it. Editing, deleting and modifying the tasks should be as simple as it
+     is in the other GTD UIs.
+
+     ---
+
+    Apart from the physical past, present and future realms you can also press `<Tab>` to switch the view
+    to the /hypothetical/ realm, aka the maybe/someday ontology. The view is also automatically switched after
+    you have completed the first stage of your review.
+
+    In this view you will see all hypothetical projects and ideas that you had, segmented by last interacted/modified
+    and new ideas that you had in the last week, after which all other items from the ontology should follow.
+
+    Here you may delete, move, build out ideas and anything else you would normally do with your m/s ontology,
+    all with the same, familiar keybinds.
+
+*** Trigger List Prompt
+
+    After a completed review, the user should also be prompted whether they would like to bring up their trigger list.
+    If yes, ask for the profile of the trigger list and display it to the user!
 
 * Motivating the User
 
@@ -334,6 +428,11 @@
   lot of tasks in their inbox, urge them by saying that sifting through just a
   few captures per day will quickly amount to serious progress. Do not let the
   user's tasks feel stale.
+
+  The review process is usually seen as a chore, and therefore should be treated
+  in a lighthearted and cheerful manner. Even a simple "Good Job!" would be enough,
+  although we may want to have a streak system which counts how many times you've
+  consecutively done a review.
 
 * Displays
 
