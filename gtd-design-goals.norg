@@ -359,16 +359,16 @@
 
          PAST                  PRESENT                 FUTURE
 
-    ┌─────────────┐        ┌─────────────┐        ┌─────────────┐
-    │    Tasks    │        │             │        │     Next    │
-    │  Completed  │        │   OVERDUE   │        │   Actions   │
-    │             │        │             │        │             │
-    │             │ -----> └─────────────┘ -----> │             │
-    │             │        ┌─────────────┐        │             │
-    │             │        │   NO NEXT   │        │             │
-    │             │        │             │        │             │
-    │             │        │   ACTIONS   │        │             │
-    └─────────────┘        └─────────────┘        └─────────────┘
+    |-------------|        |-------------|        |-------------|
+    |    Tasks    |        |             |        |     Next    |
+    |  Completed  |        |   OVERDUE   |        |   Actions   |
+    |             |        |             |        |             |
+    |             | -----> |-------------| -----> |             |
+    |             |        |-------------|        |             |
+    |             |        |   NO NEXT   |        |             |
+    |             |        |             |        |             |
+    |             |        |   ACTIONS   |        |             |
+    |-------------|        |-------------|        |-------------|
     @end
 
     The review involves all things you have done, the things you need to do, and the actions you should take to make your future self
