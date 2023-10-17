@@ -256,7 +256,20 @@
 
 * Archive
 
-  TODO.
+  The archive is where tasks that have been put down are placed. They're not entirely deleted and still
+  have a task ID, therefore they can still be referenced, but they are *not allowed to have any time-sensitive metadata*.
+
+  Any other metadata is retained, should the item be unarchived in the future.
+
+  For GTD `1.0.0`, the archive should be as simple as this. Just a container for tasks/notes that are no longer of interest.
+  In the future the capabilities of the archive may be expanded.
+
+* Reference
+
+  The reference behaves similar to the archive in that it contains data that is not actively in use. Tasks in the reference,
+  however, may have *all of their metadata retained*, including time-sensitive metadata.
+
+  Data and tasks may be pulled from the reference, but the syntax for doing so is not yet established.
 
 * Trigger List
 
@@ -419,6 +432,28 @@
 
     After a completed review, the user should also be prompted whether they would like to bring up their trigger list.
     If yes, ask for the profile of the trigger list and display it to the user!
+
+* The Calendar
+
+  The calendar is the most sophisticated GTD display.
+
+  An idea that the calendar /must/ understand is that *not all tasks are blocking*.
+  Additionally, not all tasks require your attention throughout the entire span
+  of doing the task. This is a serious shortcoming in most other time tracking applications,
+  as they force you to allocate time for things that should be able to easily overlap with other
+  tasks that you might want to do in the meantime.
+
+  The calendar implementation is detached from GTD, and GTD merely interacts with the calendar
+  to display information about upcoming, blocking/non-blocking, attentionful/attentionless tasks.
+
+* Graphs
+
+  The easiest comparison to how a graph in GTD would look is similar to obsidian's graph view.
+  Many nodes are interconnected to show relationships between data.
+
+  Graphs will be rendered in a separate window from Neovim, as it is impossible to render good-looking
+  graphs with mere unicode. Graphs also play well with mouse inputs for dragging around and clicking, therefore
+  a GUI is almost critical for this task.
 
 * Motivating the User
 
