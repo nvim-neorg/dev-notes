@@ -487,3 +487,18 @@
 * General Considerations
 
   We should absolutely establish a single ruleset for how we set our keybinds. Currently they are a bit over the place.
+
+* Storage
+
+  This section of the document covers how data is stored in the context of GTD. *All ontologies are stored as plain-text,
+  readable Norg files*. Specifically, every ontology is an /unordered/ list of tasks if it's a general container (e.g. a project, an archive).
+  If the data comes in the form of data that has to be processed in order (e.g. an inbox, a calendar, a trigger list) then the ontology
+  is an /ordered list/ of tasks.
+
+  There are some general rules that should be applied in all ontologies, and these are:
+
+  ~ Use the default TODO syntax wherever possible. This includes done, undone, cancelled (archived) tasks alongside start dates, due dates and specific dates.
+  ~ For more specific metadata, use `#` or `+` macro tags to signify more complex relationships (e.g. `#waiting.for <task-id>`)
+
+  A comprehensive list of macros will be released based on the demands of the implementation (no need to plan these out in the specification if most end up not
+  being used).
